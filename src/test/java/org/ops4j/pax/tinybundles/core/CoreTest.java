@@ -29,6 +29,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.Map;
 import java.util.jar.Attributes;
 import java.util.jar.JarInputStream;
@@ -98,7 +99,7 @@ public class CoreTest {
 
     @Test
     public void testReadBundleWithoutManifestDoesNotThrowException() throws Exception {
-    	File file = File.createTempFile("test", ".jar");
+    	File file = Files.createTempFile( "test", ".jar" ).toFile();
     	file.deleteOnExit();
 		createEmptyJar(file);
 		TinyBundles.bundle().read(new FileInputStream(file));
